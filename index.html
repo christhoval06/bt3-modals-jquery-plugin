@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bt3-data-modals Example</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<button type="button" class="btn btn-success btn-lg" data-type="show-dialog">
+    <span data-type="dialog"
+          data-dialog="alertDialog"
+          data-btns='[{"_type":"close"}]'
+          data-msg="Modal Message"
+          data-title="Modal Title"></span>
+    <span class="fa fa-check"></span> HTML
+</button>
+<button type="button" class="btn btn-success btn-lg show-dialog">JSON</button>
+<script src="src/bt3-data-modals.min.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+            $('[data-type="show-dialog"]').click(function (e) {
+                bt3DataModals.dialog($('body'), $(this));
+            });
+            $('.show-dialog').click(function (e) {
+                bt3DataModals.json($('form'), {
+                    dialog: 'confirmDialog',
+                    type: "dialog",
+                    btns: [
+                        {
+                            _type: "button",
+                            _class: "btn-primary",
+                            _icon: "fa fa-user-secret",
+                            _text: "Yes",
+                            _callback: function () {
+                                console.log('Yes was pressed!!');
+                            }
+                        },
+                        {_type: "close"}
+                    ],
+                    msg: "Modal  message",
+                    title: "Modal Title"
+                });
+            });
+        });
+    })(jQuery);
+</script>
+</body>
+</html>
